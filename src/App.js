@@ -1,9 +1,10 @@
 import "./App.css";
+import Setup from "./components/setup/setup.component";
 
 function App() {
     return (
         <div className="App">
-            <h1>Mehedi</h1>
+            <Setup />
         </div>
     );
 }
