@@ -1,8 +1,9 @@
 import React from "react";
 import "./results.style.scss";
 
-export default function Results({ result }) {
+export default function Results({ result, goHome }) {
     const percent = (result / 10) * 100;
+
     return (
         <div className="results">
             {result <= 5 ? (
@@ -10,6 +11,7 @@ export default function Results({ result }) {
             ) : (
                 <p>Congratulations! You got {percent}% correct answers</p>
             )}
+            <button onClick={goHome}>Home page</button>
         </div>
     );
 }

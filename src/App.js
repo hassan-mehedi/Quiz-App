@@ -17,6 +17,11 @@ function App() {
     const [data, setData] = useState([]);
     const [result, setResult] = useState(0);
 
+    const goHome = () => {
+        setResult(0);
+        navigate("/");
+    };
+
     const formHandler = async (e) => {
         e.preventDefault();
         const { limit, category, language, difficulty } = e.target;
@@ -70,7 +75,7 @@ function App() {
                 <Route
                     exact
                     path="/result"
-                    element={<Results result={result} />}
+                    element={<Results result={result} goHome={goHome} />}
                 ></Route>
             </Routes>
         </main>

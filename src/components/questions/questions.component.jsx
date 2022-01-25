@@ -18,7 +18,7 @@ export default function Questions({ data, result, setResult }) {
             let key = Object.keys(answers).find(
                 (k) => answers[k] === radioButtonValue
             );
-            if (correct_answers[`${key}_correct`]) {
+            if (correct_answers[`${key}_correct`] === "true") {
                 setResult(result + 1);
             }
             if (count < 9) {
