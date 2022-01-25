@@ -16,14 +16,13 @@ export default function Questions({ data }) {
         if (radioButtonValue === "") {
             alert("Please select an answer");
         } else {
-            console.log(radioButtonValue);
+            if (radioButtonValue === answers[correct_answer]) {
+                setResult(result + 1);
+            }
             if (count < 9) {
                 setCount(count + 1);
             }
             setRadioButtonValue("");
-            if (radioButtonValue === correct_answer) {
-                setResult(result + 1);
-            }
             if (count === 9) {
                 alert(
                     "You have reached the end of the quiz. Your score is " +
@@ -38,7 +37,7 @@ export default function Questions({ data }) {
     // Filtering not null options
     const answersArray = Object.entries(answers);
     const notNullAnswers = answersArray.filter(
-        ([key, value]) => value !== null
+        ([key, value]) => value !== null && value !== ""
     );
     const filteredAnswers = Object.fromEntries(notNullAnswers);
 
