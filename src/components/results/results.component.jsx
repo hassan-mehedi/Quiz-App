@@ -2,9 +2,14 @@ import React from "react";
 import "./results.style.scss";
 
 export default function Results({ result }) {
+    const percent = (result / 10) * 100;
     return (
         <div className="results">
-            <h1>{result}</h1>
+            {result <= 5 ? (
+                <p>You got less then {percent}% correct! Try again.</p>
+            ) : (
+                <p>Congratulations! You got {percent}% correct answers</p>
+            )}
         </div>
     );
 }
