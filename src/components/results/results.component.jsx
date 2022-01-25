@@ -1,10 +1,10 @@
 import React from "react";
 import "./results.style.scss";
 
-export default function Results() {
+export default function Results({ result }) {
     return (
-        <div>
-            <h1>Results</h1>
+        <div className="results">
+            <h1>{result}</h1>
         </div>
     );
 }

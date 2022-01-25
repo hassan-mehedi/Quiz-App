@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./App.css";
 import Setup from "./components/setup/setup.component";
 import Questions from "./components/questions/questions.component";
+import Results from "./components/results/results.component";
 
 function App() {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ function App() {
         difficulty: "easy",
     });
     const [data, setData] = useState([]);
+    const [result, setResult] = useState(0);
 
     const formHandler = async (e) => {
         e.preventDefault();
@@ -57,7 +59,18 @@ function App() {
                 <Route
                     exact
                     path="/questions"
-                    element={<Questions data={data} />}
+                    element={
+                        <Questions
+                            data={data}
+                            result={result}
+                            setResult={setResult}
+                        />
+                    }
+                ></Route>
+                <Route
+                    exact
+                    path="/result"
+                    element={<Results result={result} />}
                 ></Route>
             </Routes>
         </main>

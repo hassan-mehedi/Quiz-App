@@ -3,12 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "./questions.style.scss";
 import Question from "./question.component";
 
-export default function Questions({ data }) {
+export default function Questions({ data, result, setResult }) {
     const navigate = useNavigate();
     const [count, setCount] = useState(0);
     const [radioButtonValue, setRadioButtonValue] = useState("");
-    const [result, setResult] = useState(0);
-    const { question, answers, correct_answer } = data[count];
+    const { question, answers, correct_answers } = data[count];
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,7 +15,10 @@ export default function Questions({ data }) {
         if (radioButtonValue === "") {
             alert("Please select an answer");
         } else {
-            if (radioButtonValue === answers[correct_answer]) {
+            let key = Object.keys(answers).find(
+                (k) => answers[k] === radioButtonValue
+            );
+            if (correct_answers[`${key}_correct`]) {
                 setResult(result + 1);
             }
             if (count < 9) {
@@ -24,12 +26,7 @@ export default function Questions({ data }) {
             }
             setRadioButtonValue("");
             if (count === 9) {
-                alert(
-                    "You have reached the end of the quiz. Your score is " +
-                        result +
-                        "/10"
-                );
-                navigate("/");
+                navigate("/result");
             }
         }
     };
@@ -37,11 +34,10 @@ export default function Questions({ data }) {
     // Filtering not null options
     const answersArray = Object.entries(answers);
     const notNullAnswers = answersArray.filter(
-        ([key, value]) => value !== null && value !== ""
+        ([key, value]) => value !== null
     );
     const filteredAnswers = Object.fromEntries(notNullAnswers);
 
-    console.log(filteredAnswers);
     return (
         <div className="questions">
             <Question
