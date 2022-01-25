@@ -1,33 +1,8 @@
 import React, { useState } from "react";
 import "./setup.style.scss";
 
-export default function Setup() {
+export default function Setup({ formHandler, formData, setFormData }) {
     const [categoryProgramming, setCategoryProgramming] = useState(true);
-    const [formData, setFormData] = useState({
-        limit: 10,
-        category: "Linux",
-        language: "PHP",
-        difficulty: "easy",
-    });
-
-    const formHandler = (e) => {
-        e.preventDefault();
-        const { limit, category, language, difficulty } = e.target;
-        console.log(
-            limit.value,
-            category.value,
-            language.value,
-            difficulty.value
-        );
-        setFormData({
-            ...formData,
-            limit: limit.value,
-            category: category.value,
-            language: language.value,
-            difficulty: difficulty.value,
-        });
-        console.log(formData);
-    };
     return (
         <div id="setup">
             <form onSubmit={(e) => formHandler(e)}>
@@ -75,8 +50,8 @@ export default function Setup() {
                     }}
                 >
                     <option value="PHP">PHP</option>
-                    <option value="JS">JS</option>
-                    <option value="Python">Python</option>
+                    <option value="HTML">HTML</option>
+                    <option value="Javascript">Javascript</option>
                     <option value="Laravel">Laravel</option>
                 </select>
 
@@ -85,7 +60,7 @@ export default function Setup() {
                     name="difficulty"
                     id="difficulty"
                     onChange={(e) =>
-                        setFormData({ ...formData, language: e.target.value })
+                        setFormData({ ...formData, difficulty: e.target.value })
                     }
                 >
                     <option value="easy">easy</option>
